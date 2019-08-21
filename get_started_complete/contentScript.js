@@ -29,7 +29,7 @@ function gtinit(id){
             setTimeout(startProcess, 1500);
         }
     } else {
-        alert("Not starting Process");
+        // alert("Not starting Process");
     }
 }
 var urlarray = [];
