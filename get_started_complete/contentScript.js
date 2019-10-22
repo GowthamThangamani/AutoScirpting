@@ -33,6 +33,7 @@ function gtinit(id){
     }
 }
 var urlarray = [];
+var keywordtomatch = [];
 function FindParentSectionElement(childElement) {
     // console.log('find is called');
 
@@ -57,11 +58,14 @@ var isPlainObject = function (obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
 };
 
-var keywordtomatch = ["PHP", "WordPress"]
+var  defaultKeywords = ["Ad Campaigns", "Adwords Campaign", "Backlink building", "Backlink Creation", "Branding", "Campaign Management ", "Campaign manager", "Campaign Optimization", "content marketing branding", "Digital Marketing", "Digital Marketing Ads", "Digital Marketing Campaign", "Digital SEO Promotions", "email campaigns", "Email Marketing ", "Facebook Ad", "Facebook Ads", "Facebook Advertising", "Facebook Marketing", "Facebook paid advertising.", "Facebook Posting Advertising", "Google Ads", "Google AdWords", "Google Analytics", "Google Ranking", "Google Search Console", "Google Tag Manager", "Instagram Ad Campaign ", "Instagram Marketing", "Instagram Stories ", "Internet Marketing", "Internet Research ", "Keyword Analysis ", "Keyword Research", "keywords", "Lead Generation", "Link Building", "LOCAL SEO", "Mailchimp", "Marketing Management", "Marketing Strategy", "Off-page Optimization", "online brand building", "On-Page Optimization", "On-Site SEO", "Organic traffic", "Pay per click", "Pay Per Click Advertising", "Pinterest Marketing ", "PPC/SEM", "Reddit Marketing", "Remarketing", "Retargeting", "Search Engine Marketing", "Search Engine Optimization (SEO) ", "SEO", "SEO Audit", "SEO Backlinking", "SEO Backlinks", "SEO Deliverables", "SEO Expert", "SEO Keyword Research", "SEO specialist", "SEOMoz", "Social Media", "social Media Campaigns", "Social Media Content", "Social Media Management", "Social Media Marketing", "social Media Platforms", "social media platforms", "Social Media Posts", "social Media Scheduling", "Twitter Marketing", "Website Console"]
 function startProcess() {
+
+    //Searching under skills
     var skills = document.getElementsByClassName('js-skills skills');
     // console.log(skills);
 
+    //checking the skills in 
     for (i in skills) {
         // console.log( skills[i]);        
         if (skills[i].nodeName) {
@@ -87,8 +91,10 @@ function startProcess() {
 
 
 var gtURLDetailsKey = "GTURLDETails";
+var gtKeywordsKey = "GTKEYWORDDETails";
 function loadOldContent() {
     var loaal = getInLocal(gtURLDetailsKey);
+    var keywords = getInLocal(gtKeywordsKey);
     console.log("loaal");
     console.log(loaal);
     console.log(urlarray);
@@ -96,6 +102,14 @@ function loadOldContent() {
         urlarray = JSON.parse(loaal);
         console.log(urlarray);
     }
+    if (keywords != null) {
+        keywordtomatch = JSON.parse(keywords);
+    }else{
+        keywordtomatch = defaultKeywords;
+        storeInLocal(defaultKeywords,gtKeywordsKey);
+    }
+
+    
 }
 
 function storeInLocal(ar, key) {
