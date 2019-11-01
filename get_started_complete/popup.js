@@ -35,12 +35,17 @@ changeColor.onclick = function(element) {
 
     chrome.tabs.executeScript(
       tabs[0].id,
+      {code: 'var GTScriptID="'+(chrome.runtime.id)+'"'});
+    chrome.tabs.executeScript(
+      tabs[0].id,
       {code: 'var GTScriptStart="'+colorID+'"'});
     chrome.tabs.executeScript(
         tabs[0].id,
         {file: 'gowtham.js'});
   });
 };
+//oahjehemakoolpgkccphpdgdekiibanf
+//oahjehemakoolpgkccphpdgdekiibanf
 
 //btn click event to redirect to list page
 $("#newPage").click(function(){
@@ -50,25 +55,25 @@ $("#newPage").click(function(){
 
 //btn click event to set empty value in chrome storage (data sent from content.js)
 $("#clearStorage").click(function(){
-  var key='myKey';
-  var d='';
-  //for chrome storage
-  chrome.storage.sync.set({key: d}, function() {
-    console.log('Saved', key, d);
-  });
 
-  //for upwork local storage
-  var geturldetails = localStorage.getItem("GTURLDETails");
-  if (geturldetails != null && geturldetails != "null" && geturldetails != undefined && geturldetails != "undefined" && geturldetails != "") 
-  {
-    var ar = [];
-    localStorage.setItem("GTURLDETails", JSON.stringify(ar));
-  }
-
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
-});
+  let colorID = 0;
   
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.executeScript(
+      tabs[0].id,
+      {code: 'var GTScriptID="'+(chrome.runtime.id)+'"'});
+    chrome.tabs.executeScript(
+      tabs[0].id,
+      {code: 'var GTScriptStart="'+colorID+'"'});
+  chrome.tabs.executeScript(
+    tabs[0].id,
+    {file: 'gowtham.js'});
+  chrome.tabs.executeScript(
+    tabs[0].id,
+    {code: 'storeInLocal("[]","GTURLDETails");console.log("cleared")'});
+  
+  
+  });
 });
 
 

@@ -119,9 +119,11 @@ function loadOldContent() {
 
 function storeInLocal(ar, key) {
     localStorage.setItem(key, JSON.stringify(ar));
+    //alert(getInLocal("GTScriptID"));
+    console.log(getInLocal("GTScriptID"));
 
     // sending the array value from upwork local storage to extension local storage (data retrive from background.js)
-    chrome.runtime.sendMessage("dbdoliebiahbjbgcjnamgbbgfhcbanlg", JSON.stringify(ar));
+    chrome.runtime.sendMessage(getInLocal("GTScriptID"), JSON.stringify(ar));
      
 }
 
