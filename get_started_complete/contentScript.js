@@ -4,6 +4,7 @@ function ss(t) {
 console.log(window);
 // ss("Gowtham")
 //
+
 var gtStartIDKey = "gtStartIDKey"; 
 var maxPageToSearch = 50;
 $(document).ready(function () {
@@ -43,8 +44,14 @@ function FindParentSectionElement(childElement) {
         if (parentElement.nodeName == 'SECTION') {
             var fileLink = parentElement.getElementsByClassName('job-title-link');
             // window.open(fileLink[0].href, '_blank');
-            if ($.inArray(fileLink[0].href, urlarray) == -1) {
-                urlarray.push(fileLink[0].href);
+            var json = {"url":fileLink[0].href,"title":fileLink[0].innerText,"description":fileLink[0].innerText}
+                
+            if ($.inArray(json, urlarray) == -1) {
+                
+                //var json = {"url":fileLink[0].href,"title":fileLink[0].innerText,"description":fileLink[0].innerText}
+                console.log("GT JSON JSON");
+                console.log(json);
+                urlarray.push(json);
             }
             break;
         } else {
@@ -93,13 +100,13 @@ function startProcess() {
 var gtURLDetailsKey = "GTURLDETails";
 var gtKeywordsKey = "GTKEYWORDDETails";
 function loadOldContent() {
-    var loaal = getInLocal(gtURLDetailsKey);
+    var local = getInLocal(gtURLDetailsKey);
     var keywords = getInLocal(gtKeywordsKey);
-    console.log("loaal");
-    console.log(loaal);
+    console.log("local");
+    console.log(local);
     console.log(urlarray);
-    if (loaal != null) {
-        urlarray = JSON.parse(loaal);
+    if (local != null) {
+        urlarray = JSON.parse(local);
         console.log(urlarray);
     }
     if (keywords != null) {
@@ -107,13 +114,15 @@ function loadOldContent() {
     }else{
         keywordtomatch = defaultKeywords;
         storeInLocal(defaultKeywords,gtKeywordsKey);
-    }
-
-    
+    }    
 }
 
 function storeInLocal(ar, key) {
     localStorage.setItem(key, JSON.stringify(ar));
+
+    // sending the array value from upwork local storage to extension local storage (data retrive from background.js)
+    chrome.runtime.sendMessage("dbdoliebiahbjbgcjnamgbbgfhcbanlg", JSON.stringify(ar));
+     
 }
 
 function getInLocal(key) {

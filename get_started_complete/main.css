@@ -1,0 +1,62 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: calibri;
+  color: #78746d;
+}
+.mailList {
+  list-style: none;
+  margin: 0px;
+  padding-left: 0px;
+  padding: 30px;
+  border: 1px solid #e8e8e8;
+  background: #f9f9f9;
+}
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+}
+.mailList li:nth-child(1) {
+  display: flow-root;
+  font-size: 18px;
+}
+.mailList li div:nth-child(1) {
+  float: left;
+}
+.mailList li div:nth-child(2) {
+  float: right;
+  color: #37a000;
+}
+.mailList li div:nth-child(2) span {
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  margin: 0px 4px;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+}
+badge {
+  background: #e0e0e0;
+  padding: 1px 10px 2px;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0px 8px 0px 0px;
+}
+.mailList li:nth-child(4) {
+  display: flex;
+}
+.startClr {
+  color: #e0e0e0;
+  font-size: 12px;
+  margin: 0px -1px;
+}
+.strCb {
+  margin: 0px 10px;
+}
+.spentRp {
+    margin: 0px 10px;
+}
